@@ -5,43 +5,54 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.Vistas.Buscaminas;
 
 public class Main extends Application {
 
-    private Button btn1, btn2, btn3, btn4;
-    private HBox hbox;
-    private VBox vbox;
+    MenuBar mnbProyecto;
+    Menu menCompetencia1, menCompentencia2, menSalir;
+    MenuItem mitPractica1, mitBye;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        btn1 = new Button("Btn1");
-        btn1.setPrefWidth(100);
+        mnbProyecto = new MenuBar();
 
-        btn2 = new Button("Btn2");
-        btn2.setPrefWidth(100);
+        menCompetencia1 = new Menu("1er. Competencia");
+        menCompentencia2 = new Menu("2da. Competencia");
+        menSalir = new Menu("Salir");
 
-        btn3 = new Button("Btn3");
-        btn4 = new Button("Btn4");
+        mitPractica1 = new MenuItem("Practica 1");
+        mitBye = new MenuItem("Bye");
 
-        hbox = new HBox();
-        vbox = new VBox();
+        menCompetencia1.getItems().addAll(mitPractica1);
+        menSalir.getItems().add(mitBye);
 
-        vbox.setSpacing(5d);
-        hbox.setSpacing(5);
-
-        vbox.getChildren().addAll(btn1,btn2);
-        hbox.getChildren().addAll(btn3,btn4);
-        vbox.getChildren().add(hbox);
+        // Cargamos los menus al menubar
+        mnbProyecto.getMenus().addAll(menCompetencia1,menCompentencia2,menSalir);
 
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Hello Topicos :)");
-        primaryStage.setScene(new Scene(vbox, 300, 275));
+        primaryStage.setScene(new Scene(mnbProyecto, 300, 275));
         primaryStage.show();
+
+        new Buscaminas();
+
+
+
+
+
+
+
+
+
     }
 
 
