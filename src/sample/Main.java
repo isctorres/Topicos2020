@@ -29,8 +29,11 @@ public class Main extends Application {
         menCompentencia2 = new Menu("2da. Competencia");
         menSalir = new Menu("Salir");
 
-        mitPractica1 = new MenuItem("Practica 1");
+        mitPractica1 = new MenuItem("Buscaminas");
+        mitPractica1.setOnAction(event -> OpcionMenu(1));
+
         mitBye = new MenuItem("Bye");
+        mitBye.setOnAction(event -> OpcionMenu(20));
 
         menCompetencia1.getItems().addAll(mitPractica1);
         menSalir.getItems().add(mitBye);
@@ -42,17 +45,16 @@ public class Main extends Application {
         primaryStage.setTitle("Hello Topicos :)");
         primaryStage.setScene(new Scene(mnbProyecto, 300, 275));
         primaryStage.show();
+    }
 
-        new Buscaminas();
-
-
-
-
-
-
-
-
-
+    private void OpcionMenu(int i) {
+        switch (i){
+            case 1:
+                new Buscaminas();
+                break;
+            case 20:
+                System.exit(0);
+        }
     }
 
 
