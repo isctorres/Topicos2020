@@ -29,8 +29,13 @@ public class EventoBuscaminas implements EventHandler {
     public void handle(Event event) {
         int nr = Integer.parseInt(txtNoRows.getText());
         int nc = Integer.parseInt(txtNoCols.getText());
+
+        if( arBtnCeldas != null )
+            vBox.getChildren().remove(gdpCampo);
+
         arBtnCeldas = new Button[nr][nc];
         gdpCampo = new GridPane();
+
         for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc ; j++) {
                 arBtnCeldas[i][j] = new Button(i+"-"+j);
