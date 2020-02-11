@@ -41,7 +41,7 @@ public class Buscaminas extends Stage implements EventHandler {
 
         btnMinar = new Button("Minar Campo");
         //btnMinar.addEventHandler(MouseEvent.MOUSE_CLICKED,this);
-        btnMinar.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventoBuscaminas(txtNoRows,txtNoCols));
+        btnMinar.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventoBuscaminas(txtNoRows,txtNoCols,arBtnCeldas,gdpCampo,vBox));
         /*btnMinar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

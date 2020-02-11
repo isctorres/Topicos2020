@@ -14,10 +14,13 @@ public class EventoBuscaminas implements EventHandler {
     private Button[][] arBtnCeldas;
     private VBox vBox;
 
-    public EventoBuscaminas(TextField txtNR, TextField txtNC){
+    public EventoBuscaminas(TextField txtNR, TextField txtNC, Button[][] arBtnCeldas,GridPane gdpCampo, VBox vBox){
 
         this.txtNoRows = txtNR;
         this.txtNoCols = txtNC;
+        this.arBtnCeldas = arBtnCeldas;
+        this.gdpCampo = gdpCampo;
+        this.vBox = vBox;
 
     }
 
@@ -27,5 +30,14 @@ public class EventoBuscaminas implements EventHandler {
         int nr = Integer.parseInt(txtNoRows.getText());
         int nc = Integer.parseInt(txtNoCols.getText());
         arBtnCeldas = new Button[nr][nc];
+        gdpCampo = new GridPane();
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < nc ; j++) {
+                arBtnCeldas[i][j] = new Button(i+"-"+j);
+                gdpCampo.add(arBtnCeldas[i][j],j,i);
+            }
+        }
+
+        vBox.getChildren().add(gdpCampo);
     }
 }
