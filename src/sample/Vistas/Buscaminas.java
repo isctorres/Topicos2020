@@ -55,7 +55,8 @@ public class Buscaminas extends Stage implements EventHandler {
         hBox.getChildren().addAll(lblNoRows,txtNoRows,lblNoCols,txtNoCols,btnMinar);
         vBox.getChildren().addAll(hBox);
 
-        escena = new Scene(vBox,350,350);
+        escena = new Scene(vBox,600,500);
+        escena.getStylesheets().add("sample/Estilos/estilos_buscaminas.css  ");
     }
 
     private void Evento() {

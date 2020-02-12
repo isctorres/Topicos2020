@@ -1,0 +1,7 @@
+.root{
+    -fx-base: #90a4ae;
+}
+
+.button:hover{
+    -fx-base: #9e9d24;
+}

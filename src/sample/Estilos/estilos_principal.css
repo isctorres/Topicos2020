@@ -1,0 +1,10 @@
+.root{
+    -fx-background-image: url("https://conocedores.com/wp-content/uploads/2020/01/tren-maya-recorrido-240120200.jpeg");
+    -fx-background-size: cover, auto;
+}
+
+.menu-bar{
+    -fx-background-color: #E88224;
+    -fx-border-color: #FF0011;
+    -fx-border-width: 4;
+}

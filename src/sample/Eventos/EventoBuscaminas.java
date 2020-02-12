@@ -2,6 +2,7 @@ package sample.Eventos;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -35,10 +36,14 @@ public class EventoBuscaminas implements EventHandler {
 
         arBtnCeldas = new Button[nr][nc];
         gdpCampo = new GridPane();
+        gdpCampo.setPadding(new Insets(15));
 
         for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc ; j++) {
                 arBtnCeldas[i][j] = new Button(i+"-"+j);
+                arBtnCeldas[i][j].setPrefSize(50,50);
+                arBtnCeldas[i][j].setStyle("-fx-base: #9ccc65; -fx-background-radius: 10;");
+
                 gdpCampo.add(arBtnCeldas[i][j],j,i);
             }
         }
