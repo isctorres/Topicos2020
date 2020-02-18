@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import sample.Eventos.EventoTaquimecanografo;
+import sample.Eventos.EventoVentanaTaqui;
 
 import java.io.File;
 
@@ -28,6 +31,7 @@ public class Taquimecanografo extends Stage {
         CrearGUI();
         this.setTitle("Mi tutor de mecanografía");
         this.setScene(escena);
+        this.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST,new EventoVentanaTaqui());
         this.show();
     }
 
@@ -45,6 +49,7 @@ public class Taquimecanografo extends Stage {
 
         txaEscritura = new TextArea();
         txaEscritura.setPrefRowCount(5);
+        txaEscritura.setOnKeyPressed(new EventoTaquimecanografo());
 
         hTeclas3 = new HBox();
         arBotones3 = new Button[14];
