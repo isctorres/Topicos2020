@@ -49,9 +49,9 @@ public class Taquimecanografo extends Stage {
 
         txaEscritura = new TextArea();
         txaEscritura.setPrefRowCount(5);
-        txaEscritura.setOnKeyPressed(new EventoTaquimecanografo());
 
         hTeclas3 = new HBox();
+        hTeclas3.setSpacing(5);
         hTeclas3.setId("hbox-custom");
         arBotones3 = new Button[14];
         for (int i = 0; i < 14 ; i++) {
@@ -64,13 +64,18 @@ public class Taquimecanografo extends Stage {
                 arBotones3[i].setId("btnRow3_013");
 
         }
+
+        EventoTaquimecanografo objEvento = new EventoTaquimecanografo(arBotones3);
+        txaEscritura.setOnKeyPressed(objEvento);
+        txaEscritura.setOnKeyReleased(objEvento);
+
         vTeclado = new VBox();
         vTeclado.getChildren().addAll(hTeclas3);
 
         vPrincipal = new VBox();
         vPrincipal.setSpacing(5);
         vPrincipal.getChildren().addAll(tlbMenu,txaTexto,txaEscritura,vTeclado);
-        escena = new Scene(vPrincipal,700,350);
+        escena = new Scene(vPrincipal,900,350);
         escena.getStylesheets().add("sample/Estilos/estilos_taquimecanografo.css");
 
     }
