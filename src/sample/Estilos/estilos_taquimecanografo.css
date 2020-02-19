@@ -1,0 +1,20 @@
+.root{
+    -fx-base: #90a4ae;
+}
+
+#btnRow3{
+    -fx-base: #CCCC00;
+    -fx-pref-height: 30;
+    -fx-min-width: 50;
+}
+
+#btnRow3_013{
+    -fx-base: #CCCC00;
+    -fx-pref-height: 30;
+    -fx-min-width: 100;
+}
+
+#hbox-custom {
+    -fx-background-radius: 5.0;
+    -fx-padding: 8;
+}
