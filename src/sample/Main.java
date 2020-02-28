@@ -12,14 +12,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.Modelos.Conexion;
 import sample.Vistas.Buscaminas;
+import sample.Vistas.CRUDProductos;
 import sample.Vistas.Taquimecanografo;
 
 public class Main extends Application {
 
     MenuBar mnbProyecto;
     Menu menCompetencia1, menCompentencia2, menSalir;
-    MenuItem mitPractica1, mitPractica2, mitBye;
+    MenuItem mitPractica1, mitPractica2, mitPractica3, mitBye;
     Scene escena;
     BorderPane brpPrincipal;
 
@@ -39,17 +41,23 @@ public class Main extends Application {
         mitPractica1.setOnAction(event -> OpcionMenu(1));
         mitPractica2 = new MenuItem("Taquimecanografo");
         mitPractica2.setOnAction(event -> OpcionMenu(2));
+        mitPractica3 = new MenuItem("CRUD Productos");
+        mitPractica3.setOnAction(event -> OpcionMenu(3));
 
         mitBye = new MenuItem("Bye");
         mitBye.setOnAction(event -> OpcionMenu(20));
 
         menCompetencia1.getItems().addAll(mitPractica1,mitPractica2);
+        menCompentencia2.getItems().addAll(mitPractica3);
         menSalir.getItems().add(mitBye);
 
         // Cargamos los menus al menubar
         mnbProyecto.getMenus().addAll(menCompetencia1,menCompentencia2,menSalir);
         escena = new Scene(brpPrincipal, 300, 275);
         escena.getStylesheets().add("sample/Estilos/estilos_principal.css");
+
+        // Creamos la conexión a la bd
+        //Conexion.crearConexion();
 
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Hello Topicos :)");
@@ -64,6 +72,9 @@ public class Main extends Application {
                 break;
             case 2:
                 new Taquimecanografo();
+                break;
+            case 3:
+                new CRUDProductos();
                 break;
             case 20:
                 System.exit(0);
