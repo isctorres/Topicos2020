@@ -2,11 +2,14 @@ package sample.Vistas;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import sample.Componentes.ButtonCell;
 import sample.Modelos.ProductosDAO;
 
 public class CRUDProductos extends Stage{
@@ -15,8 +18,10 @@ public class CRUDProductos extends Stage{
     private VBox vbox;
     private TableView<ProductosDAO> tbvProductos;
     private Button btnAgregar;
+    private ProductosDAO objP;
 
     public CRUDProductos(){
+        objP = new ProductosDAO();
         CrearGUI();
         this.setTitle("CRUD Productos :)");
         this.setScene(escena);
@@ -56,8 +61,29 @@ public class CRUDProductos extends Stage{
         TableColumn<ProductosDAO,Integer> tbcIdProveedor = new TableColumn<>("PROVEEDOR");
         tbcIdProveedor.setCellValueFactory(new PropertyValueFactory<>("idProveedor"));
 
-        tbvProductos.getColumns().addAll(tbcIdProducto,tbcNomProducto,tbcCosto,tbcPrecio,tbcExistencia,tbcVigente,tbcIdProveedor);
+        TableColumn<ProductosDAO,String> tbcBorrar = new TableColumn<>("Borrar");
+        tbcBorrar.setCellFactory(
+                new Callback<TableColumn<ProductosDAO, String>, TableCell<ProductosDAO, String>>() {
+                    @Override
+                    public TableCell<ProductosDAO, String> call(TableColumn<ProductosDAO, String> param) {
+                        return new ButtonCell();
+                    }
+                }
+        );
 
+        TableColumn<ProductosDAO,String> tbcEditar = new TableColumn<>("Editar");
+        tbcEditar.setCellFactory(
+                new Callback<TableColumn<ProductosDAO, String>, TableCell<ProductosDAO, String>>() {
+                    @Override
+                    public TableCell<ProductosDAO, String> call(TableColumn<ProductosDAO, String> param) {
+                        return new ButtonCell();
+                    }
+                }
+        );
+
+
+        tbvProductos.getColumns().addAll(tbcIdProducto,tbcNomProducto,tbcCosto,tbcPrecio,tbcExistencia,tbcVigente,tbcIdProveedor,tbcEditar,tbcBorrar);
+        tbvProductos.setItems(objP.selAllProducto());
     }
 
     private void AgregarProducto() {

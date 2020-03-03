@@ -57,7 +57,7 @@ public class Main extends Application {
         escena.getStylesheets().add("sample/Estilos/estilos_principal.css");
 
         // Creamos la conexión a la bd
-        //Conexion.crearConexion();
+        Conexion.crearConexion();
 
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Hello Topicos :)");

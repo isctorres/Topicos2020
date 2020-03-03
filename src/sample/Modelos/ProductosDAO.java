@@ -117,7 +117,9 @@ public class ProductosDAO {
                 objP.setIdProveedor(res.getInt("idProveedor"));
                 listaP.add(objP);
             }
-        }catch (Exception e){}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return listaP;
     }
