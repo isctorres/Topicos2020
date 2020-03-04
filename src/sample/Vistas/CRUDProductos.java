@@ -66,7 +66,7 @@ public class CRUDProductos extends Stage{
                 new Callback<TableColumn<ProductosDAO, String>, TableCell<ProductosDAO, String>>() {
                     @Override
                     public TableCell<ProductosDAO, String> call(TableColumn<ProductosDAO, String> param) {
-                        return new ButtonCell();
+                        return new ButtonCell(2);
                     }
                 }
         );
@@ -76,7 +76,7 @@ public class CRUDProductos extends Stage{
                 new Callback<TableColumn<ProductosDAO, String>, TableCell<ProductosDAO, String>>() {
                     @Override
                     public TableCell<ProductosDAO, String> call(TableColumn<ProductosDAO, String> param) {
-                        return new ButtonCell();
+                        return new ButtonCell(1);
                     }
                 }
         );
@@ -87,5 +87,6 @@ public class CRUDProductos extends Stage{
     }
 
     private void AgregarProducto() {
+        new FrmProducto();
     }
 }

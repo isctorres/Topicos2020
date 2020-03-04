@@ -70,7 +70,7 @@ public class ProductosDAO {
 
         String query = "insert into tbl_Productos " +
                 "(nomProducto,costo,precio,existencia,vigente,idProveedor) " +
-                "values('"+nomProducto+"',"+costo+","+precio+","+existencia+",'"+vigente+"',1)";
+                "values('"+nomProducto+"',"+costo+","+precio+","+existencia+","+vigente+",1)";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
