@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -14,15 +15,16 @@ import sample.Modelos.ProveedoresDAO;
 public class FrmProducto extends Stage{
 
     private ProductosDAO objP;
-
+    private TableView<ProductosDAO> tbvProductos;
     private VBox vbox;
     private TextField txtDesc, txtCosto, txtPrecio, txtExistencia;
-    private ComboBox cbxVigente;
+    private ComboBox<String> cbxVigente;
     private ComboBox<ProveedoresDAO> cbxProveedor;
     private Button btnGuardar;
     private Scene escena;
-    public FrmProducto(){
 
+    public FrmProducto(TableView<ProductosDAO> tbvProductos){
+        this.tbvProductos = tbvProductos;
         CrearGUI();
         this.setTitle("Gestion de Productos :)");
         this.setScene(escena);
@@ -39,7 +41,11 @@ public class FrmProducto extends Stage{
         txtPrecio.setPromptText("Introduce el precio");
         txtExistencia = new TextField();
         txtExistencia.setPromptText("Introduce la existencia");
+
+        ObservableList<String> listVigente = FXCollections.observableArrayList();
+        listVigente.addAll("Vigente","Descontinuado");
         cbxVigente = new ComboBox();
+        cbxVigente.setItems(listVigente);
 
         cbxProveedor = new ComboBox();
         cbxProveedor.setItems(new ProveedoresDAO().selAllProveedores());
@@ -57,11 +63,18 @@ public class FrmProducto extends Stage{
         objP.setCosto(Float.parseFloat(txtCosto.getText()));
         objP.setPrecio(Float.parseFloat(txtPrecio.getText()));
         objP.setExistencia(Integer.parseInt(txtExistencia.getText()));
-        objP.setVigente(true);
+
+        boolean ban = (cbxVigente.getValue()== "Vigente") ? true : false;
+        objP.setVigente(ban);
 
         ProveedoresDAO objTemp = cbxProveedor.getValue();
         //cbxProveedor.getItems().get(cbxProveedor.getSelectionModel().getSelectedIndex());
         objP.setIdProveedor(objTemp.getIdProveedor());
         objP.insProducto();
+
+        tbvProductos.setItems(objP.selAllProducto());
+        tbvProductos.refresh();
+
+        this.close();
     }
 }
