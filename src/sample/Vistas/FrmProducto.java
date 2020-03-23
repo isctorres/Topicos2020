@@ -23,7 +23,12 @@ public class FrmProducto extends Stage{
     private Button btnGuardar;
     private Scene escena;
 
-    public FrmProducto(TableView<ProductosDAO> tbvProductos){
+    public FrmProducto(TableView<ProductosDAO> tbvProductos,ProductosDAO obj){
+        if( obj != null )
+            objP = obj;
+        else
+            objP = new ProductosDAO();
+
         this.tbvProductos = tbvProductos;
         CrearGUI();
         this.setTitle("Gestion de Productos :)");
@@ -34,21 +39,30 @@ public class FrmProducto extends Stage{
     private void CrearGUI() {
         vbox = new VBox();
         txtDesc = new TextField();
+        txtDesc.setText(objP.getNomProducto());
         txtDesc.setPromptText("Introduce la descripción");
         txtCosto = new TextField();
+        txtCosto.setText(objP.getCosto()+"");
         txtCosto.setPromptText("Introduce el costo");
         txtPrecio = new TextField();
+        txtPrecio.setText(objP.getPrecio()+"");
         txtPrecio.setPromptText("Introduce el precio");
         txtExistencia = new TextField();
         txtExistencia.setPromptText("Introduce la existencia");
-
+        txtExistencia.setText(objP.getExistencia()+"");
         ObservableList<String> listVigente = FXCollections.observableArrayList();
         listVigente.addAll("Vigente","Descontinuado");
         cbxVigente = new ComboBox();
+        String val = ( objP.isVigente() == true ) ? "Vigente" : "Descontinuado";
         cbxVigente.setItems(listVigente);
+        cbxVigente.setValue(val);
 
         cbxProveedor = new ComboBox();
         cbxProveedor.setItems(new ProveedoresDAO().selAllProveedores());
+        ProveedoresDAO objPr = new ProveedoresDAO();
+        objPr.setIdProveedor(objP.getIdProveedor());
+        objPr.getProvById();
+        cbxProveedor.setValue(objPr);
 
         btnGuardar = new Button("Guardar");
         btnGuardar.setOnAction(event -> guardarDatos());
@@ -58,19 +72,22 @@ public class FrmProducto extends Stage{
      }
 
     private void guardarDatos() {
-        objP = new ProductosDAO();
+
         objP.setNomProducto(txtDesc.getText());
         objP.setCosto(Float.parseFloat(txtCosto.getText()));
         objP.setPrecio(Float.parseFloat(txtPrecio.getText()));
         objP.setExistencia(Integer.parseInt(txtExistencia.getText()));
 
-        boolean ban = (cbxVigente.getValue()== "Vigente") ? true : false;
+        boolean ban = (cbxVigente.getValue() == "Vigente") ? true : false;
         objP.setVigente(ban);
 
         ProveedoresDAO objTemp = cbxProveedor.getValue();
-        //cbxProveedor.getItems().get(cbxProveedor.getSelectionModel().getSelectedIndex());
         objP.setIdProveedor(objTemp.getIdProveedor());
-        objP.insProducto();
+
+        if( objP.getIdProducto() >= 1 )
+            objP.updProducto();
+        else
+            objP.insProducto();
 
         tbvProductos.setItems(objP.selAllProducto());
         tbvProductos.refresh();

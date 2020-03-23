@@ -69,6 +69,22 @@ public class ProveedoresDAO {
         return listPv;
     }
 
+    public void getProvById(){
+        String query = "SELECT * FROM tbl_Proveedores where idProveedor ="+idProveedor;
+        try{
+            Statement stmt = Conexion.con.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            if( res.next() ){
+                nomProveedor = res.getString("nomProveedor");
+                dirProveedor = res.getString("dirProveedor");
+                telProveedor = res.getString("telProveedor");
+                mailProveedor = res.getString("mailProveedor");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return nomProveedor + " (" + mailProveedor + ")";

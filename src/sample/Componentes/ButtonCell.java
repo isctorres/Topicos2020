@@ -1,10 +1,8 @@
 package sample.Componentes;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.*;
 import sample.Modelos.ProductosDAO;
+import sample.Vistas.FrmProducto;
 
 import java.util.Optional;
 
@@ -17,7 +15,10 @@ public class ButtonCell extends TableCell<ProductosDAO,String> {
         if( opc == 1 ){
             btnCelda = new Button("Editar");
             btnCelda.setOnAction(event -> {
-
+                TableView<ProductosDAO> tbvTemp;
+                tbvTemp = ButtonCell.this.getTableView();
+                objP = ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                new FrmProducto(tbvTemp,objP);
             });
         }
         else{

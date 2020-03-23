@@ -80,14 +80,14 @@ public class ProductosDAO {
     }
 
     public void updProducto(){
-        String query = "update tbl_Productos nomProducto='"+nomProducto+"'" +
+        String query = "update tbl_Productos set nomProducto='"+nomProducto+"'" +
                 ",costo="+costo+",precio="+precio+",existencia="+existencia+"," +
-                "vigente='"+vigente+"',idProveedor="+idProveedor+" where " +
+                "vigente="+vigente+",idProveedor="+idProveedor+" where " +
                 "idProducto="+idProducto;
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
-        }catch (Exception e){}
+        }catch (Exception e){ e.printStackTrace();}
     }
 
     public void delProducto(){
