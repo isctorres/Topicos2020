@@ -12,16 +12,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.Componentes.Hilo;
 import sample.Modelos.Conexion;
 import sample.Vistas.Buscaminas;
 import sample.Vistas.CRUDProductos;
+import sample.Vistas.PistaAtletismo;
 import sample.Vistas.Taquimecanografo;
 
 public class Main extends Application {
 
     MenuBar mnbProyecto;
     Menu menCompetencia1, menCompentencia2, menSalir;
-    MenuItem mitPractica1, mitPractica2, mitPractica3, mitBye;
+    MenuItem mitPractica1, mitPractica2, mitPractica3, mitPractica4, mitBye;
     Scene escena;
     BorderPane brpPrincipal;
 
@@ -43,12 +45,14 @@ public class Main extends Application {
         mitPractica2.setOnAction(event -> OpcionMenu(2));
         mitPractica3 = new MenuItem("CRUD Productos");
         mitPractica3.setOnAction(event -> OpcionMenu(3));
+        mitPractica4 = new MenuItem("Pista Atletismo");
+        mitPractica4.setOnAction(event -> OpcionMenu(4));
 
         mitBye = new MenuItem("Bye");
         mitBye.setOnAction(event -> OpcionMenu(20));
 
         menCompetencia1.getItems().addAll(mitPractica1,mitPractica2);
-        menCompentencia2.getItems().addAll(mitPractica3);
+        menCompentencia2.getItems().addAll(mitPractica3,mitPractica4);
         menSalir.getItems().add(mitBye);
 
         // Cargamos los menus al menubar
@@ -63,6 +67,12 @@ public class Main extends Application {
         primaryStage.setTitle("Hello Topicos :)");
         primaryStage.setScene(escena);
         primaryStage.show();
+
+        /*new Hilo("Rubensin").start();
+        new Hilo("El prisas").start();
+        new Hilo("Sonic").start();
+        new Hilo("Limas").start();
+        new Hilo("Hulk").start();*/
     }
 
     private void OpcionMenu(int i) {
@@ -76,11 +86,13 @@ public class Main extends Application {
             case 3:
                 new CRUDProductos();
                 break;
+            case 4:
+                new PistaAtletismo();
+                break;
             case 20:
                 System.exit(0);
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);

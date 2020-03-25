@@ -1,16 +1,24 @@
+package sample.Componentes;
+
 public class Hilo extends Thread{
-    @override
-    public void run(){
+
+    public Hilo(String nomHilo) {
+        setName(nomHilo);
+    }
+
+    @Override
+    public void run() {
+        super.run();
 
         System.out.println("Inicia Corredor"+getName());
         for (int i = 1; i < 5 ; i++) {
-            sleep( (long)( Math.random() * 2000) );
+            try {
+                sleep((long) (Math.random() * 5000));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            System.out.println("Corredor "+getName()+" termino el km "+i);
         }
+        System.out.println("Corredor " + getName() + " llego a la meta");
     }
 }
-
-// Sonic -> Hilo1
-// Rubensin -> Hilo2
-// Hulk -> Hilo3
-// El prisas -> Hilo4
-// Limas -> Hilo5
