@@ -12,12 +12,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.Componentes.ConsumidorThread;
 import sample.Componentes.Hilo;
+import sample.Componentes.ProductorThread;
 import sample.Modelos.Conexion;
-import sample.Vistas.Buscaminas;
-import sample.Vistas.CRUDProductos;
-import sample.Vistas.PistaAtletismo;
-import sample.Vistas.Taquimecanografo;
+import sample.Vistas.*;
 
 public class Main extends Application {
 
@@ -73,6 +72,10 @@ public class Main extends Application {
         new Hilo("Sonic").start();
         new Hilo("Limas").start();
         new Hilo("Hulk").start();*/
+
+        RecursoCompartido objRec = new RecursoCompartido();
+        new ProductorThread(objRec).start();
+        new ConsumidorThread(objRec).start();
     }
 
     private void OpcionMenu(int i) {
